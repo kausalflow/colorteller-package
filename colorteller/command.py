@@ -1,3 +1,2 @@
-
 def colorteller():
     pass

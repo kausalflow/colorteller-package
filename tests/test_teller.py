@@ -1,5 +1,6 @@
 from nose import tools as _tools
 from colorteller import teller
+from colorteller.utils import benchmark
 from loguru import logger
 import matplotlib.pyplot as plt
 
@@ -42,4 +43,24 @@ def test__teller_Colors___perceptual_distance():
 
     c = teller.Colors(colorteller=ct)
 
-    logger.info(f"{c.metrics()}")
+    logger.info(f"{c.metrics(methods=[benchmark.PerceptualDistanceBenchmark])}")
+
+
+def test__teller_Colors___lightness():
+    hex_strings = ["#8de4d3", "#344b46", "#74ee65", "#238910", "#a6c363", "#509d99"]
+
+    ct = teller.ColorTeller(hex_strings=hex_strings)
+
+    c = teller.Colors(colorteller=ct)
+
+    logger.info(f"{c.metrics(methods=[benchmark.LightnessBenchmark])}")
+
+
+def test__teller_Colors___benchmark_multiple():
+    hex_strings = ["#8de4d3", "#344b46", "#74ee65", "#238910", "#a6c363", "#509d99"]
+
+    ct = teller.ColorTeller(hex_strings=hex_strings)
+
+    c = teller.Colors(colorteller=ct)
+
+    logger.info(f"{c.metrics(methods=[benchmark.PerceptualDistanceBenchmark, benchmark.LightnessBenchmark])}")

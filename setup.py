@@ -72,7 +72,9 @@ def setup():
         test_suite="nose.collector",
         tests_require=["nose"],
         extras_require=get_extra_requires("requirements.extras.txt"),
-        entry_points={"console_scripts": ["colorteller=colorteller.command:colorteller"]},
+        entry_points={
+            "console_scripts": ["colorteller=colorteller.command:colorteller"]
+        },
         zip_safe=False,
     )
 

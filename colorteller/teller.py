@@ -4,6 +4,7 @@ from loguru import logger
 from colormath.color_objects import sRGBColor, LabColor
 from colormath.color_conversions import convert_color
 from colormath.color_diff import delta_e_cie2000
+from .utils.benchmark import PerceptualDistanceBenchmark, LightnessBenchmark
 
 
 class ColorTeller:
@@ -90,99 +91,16 @@ class Colors:
     def LabColor(self):
         return [convert_color(c, LabColor) for c in self.sRGBColor]
 
-    def metrics(self):
-        colors = self.LabColor
+    def metrics(self, methods=None):
+        if methods is None:
+            methods = []
 
-        self.metrics = {
-            # "name_difference": self._name_difference(colors),
-            "perceptual_distance": self._perceptual_distance(colors),
-            # "pair_preference": self._pair_preference(colors),
-        }
+        metrics = []
+        for m in methods:
+            m_b = m(self)
+            metrics.append(m_b.metric())
 
-        return self.metrics
-
-    @staticmethod
-    def _name_difference(colors):
-        raise NotImplementedError(f"_name_difference has not yet been implamented.")
-
-    def _perceptual_distance(self, colors, matrix=False):
-        if matrix is False:
-            return self._perceptual_distance_list(colors)
-        else:
-            return self._perceptual_distance_matrix(colors)
-
-    @staticmethod
-    def _pair_preference(colors):
-        raise NotImplementedError(f"_pair_preference has not yet been implamented.")
-
-    @staticmethod
-    def _name_uniqueness(colors):
-        raise NotImplementedError(f"_name_uniqueness has not yet been implamented.")
-
-    @staticmethod
-    def _perceptual_distance_matrix(colors):
-        pd = []
-        for ci in colors:
-            ci_pd = []
-            for cj in colors:
-                ci_pd.append(delta_e_cie2000(ci, cj))
-            pd.append(ci_pd)
-
-        return pd
-
-    def _perceptual_distance_list(self, colors, sort=True):
-        logger.debug(f"Calculating perceptual distance for {len(colors)} colors: {colors}.")
-        if sort is True:
-            logger.debug("Sorting colors by perceptual distance.")
-            sorted_lab_colors_ = self._sort_on_distance(colors, delta_e_cie2000)
-            logger.debug(f"Sorted colors by perceptual distance: {sorted_lab_colors_}")
-            sorted_lab_colors = sorted_lab_colors_["colors"]
-            logger.debug(f"Sorted colors by perceptual distance: {sorted_lab_colors}")
-            sorted_colors = [self.hex[i] for i in sorted_lab_colors_["indices"]]
-            logger.debug(f"Sorted colors by perceptual distance: {sorted_colors}")
-            distances = [
-                delta_e_cie2000(c1, c2)
-                for c1, c2 in zip(sorted_lab_colors[:-1], sorted_lab_colors[1:])
-            ]
-            res = {
-                "colors": sorted_colors,
-                "lab": [c.get_value_tuple() for c in sorted_lab_colors],
-                "distances": distances,
-            }
-        else:
-            distances = [
-                delta_e_cie2000(c1, c2) for c1, c2 in zip(colors[:-2], colors[1:])
-            ]
-            res = {
-                "colors": self.hex,
-                "lab": [c.get_value_tuple() for c in colors],
-                "distances": distances
-            }
-
-        return res
-
-    @staticmethod
-    def _sort_on_distance(lab_colors, distance_metric):
-        ref = lab_colors[0]
-        ref_distances = [distance_metric(c, ref) for c in lab_colors]
-        sorted_index = sorted(range(len(ref_distances)), key=ref_distances.__getitem__)
-
-        return {
-            "colors": [lab_colors[i] for i in sorted_index],
-            "indices": sorted_index,
-        }
-
-
-class ColorsBenchmark:
-    """
-    Create charts to benchmark the color palettes.
-    """
-
-    def __init__(self) -> None:
-        pass
-
-    def save(self):
-        pass
+        return metrics
 
 
 if __name__ == "__main__":
