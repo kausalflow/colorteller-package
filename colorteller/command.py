@@ -10,6 +10,7 @@ from loguru import logger
 from colorteller.teller import Colors, ColorTeller
 from colorteller.utils.benchmark import LightnessBenchmark, PerceptualDistanceBenchmark
 import colorteller.visualize as cvis
+from colorteller.utils.cmd import prepare_paths
 
 logger.remove()
 logger.add(sys.stderr, level="INFO", enqueue=True)
@@ -31,14 +32,22 @@ def colorteller(ctx):
 @colorteller.command()
 @click.option("--hex_strings", "-h", help="RGB hex color", multiple=True)
 @click.option(
-    "--metrics_to",
-    "-mt",
-    help="Save metric JSON results to file",
+    "--target",
+    "-t",
+    help="Folder for save results",
     type=click.Path(exists=False),
     required=False,
     default=None,
 )
-def benchmark(hex_strings, metrics_to, charts_to):
+@click.option(
+    "--with_benchmark_charts",
+    "-wbc",
+    help="whether to create benchmark charts",
+    type=bool,
+    required=False,
+    default=False,
+)
+def benchmark(hex_strings, target, with_benchmark_charts):
     """Benchmark input colors
 
     :param hex: Paper DOI, optional, can be multiple
@@ -51,13 +60,26 @@ def benchmark(hex_strings, metrics_to, charts_to):
 
     metrics = colors.metrics(methods=[PerceptualDistanceBenchmark, LightnessBenchmark])
 
-    if metrics_to:
+
+    if target:
+        paths = prepare_paths(target)
+        target = paths["target"]
+
+    if paths.get("metrics_to"):
+        metrics_to = paths["metrics_to"]
         with open(metrics_to, "w") as fp:
             json.dump(metrics, fp)
     else:
         click.echo(json.dumps(metrics, indent=2))
 
-    if charts_to:
-        ax_dm = cvis.distance_matrix(metrics)
+    if with_benchmark_charts and target:
+        # create visualizations
+        click.echo("Creating benchmark charts...")
+        vis_bm = cvis.BenchmarkCharts(metrics=metrics, save_folder=target)
+        vis_bm.distance_matrix(show=False, save_to=True)
+        click.echo(f"Saved distance_matrix chart to folder {target}.")
+        vis_bm.noticable_matrix(show=False, save_to=True)
+        click.echo(f"Saved noticable_matrix chart to folder {target}.")
 
-    return metrics
+
+
