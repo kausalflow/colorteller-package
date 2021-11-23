@@ -1,8 +1,7 @@
-from nose import tools as _tools
 from colorteller import teller
 from colorteller.utils import benchmark
 from loguru import logger
-import matplotlib.pyplot as plt
+from nose import tools as _tools
 
 
 def test__teller__ColorTeller():
@@ -63,4 +62,6 @@ def test__teller_Colors___benchmark_multiple():
 
     c = teller.Colors(colorteller=ct)
 
-    logger.info(f"{c.metrics(methods=[benchmark.PerceptualDistanceBenchmark, benchmark.LightnessBenchmark])}")
+    logger.info(
+        f"{c.metrics(methods=[benchmark.PerceptualDistanceBenchmark, benchmark.LightnessBenchmark])}"
+    )

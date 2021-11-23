@@ -1,10 +1,10 @@
 import json
-from .utils.hex import Hex
-from loguru import logger
-from colormath.color_objects import sRGBColor, LabColor
+
 from colormath.color_conversions import convert_color
-from colormath.color_diff import delta_e_cie2000
-from .utils.benchmark import PerceptualDistanceBenchmark, LightnessBenchmark
+from colormath.color_objects import LabColor, sRGBColor
+from loguru import logger
+
+from .utils.hex import Hex
 
 
 class ColorTeller:
@@ -101,15 +101,3 @@ class Colors:
             metrics.append(m_b.metric())
 
         return metrics
-
-
-if __name__ == "__main__":
-
-    data_raw = '[{"author":"KausalFlow","colors":[{"hex":"#8de4d3","name":""},{"hex":"#344b46"},{"hex":"#74ee65"},{"hex":"#238910"},{"hex":"#a6c363"},{"hex":"#509d99"}],"date":1637142696,"expirydate":-62135596800,"file":"bobcat-yellow","hex":["8de4d3","344b46","74ee65","238910","a6c363","509d99"],"images":null,"objectID":"e0e129c8ed58316127909db84c67efcb","permalink":"//localhost:1234/colors/bobcat-yellow/","publishdate":"2021-11-17T10:51:36+01:00","summary":"This is an experiment","tags":null,"title":"Bobcat Yellow"}]'
-
-    ct = ColorTeller(data_raw)
-    c = Colors(colorteller=ct)
-
-    logger.info(f"{c.perceptual_distance}")
-
-    print(c)

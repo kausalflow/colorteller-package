@@ -1,6 +1,6 @@
+from colormath.color_conversions import convert_color
 from colormath.color_diff import delta_e_cie2000
 from colormath.color_objects import LabColor, sRGBColor
-from colormath.color_conversions import convert_color
 from loguru import logger
 
 
@@ -49,7 +49,7 @@ class PerceptualDistanceBenchmark(ColorsBenchmark):
             "data": self._perceptual_distance(self.LabColor),
         }
 
-    def _perceptual_distance(self, colors, matrix=False):
+    def _perceptual_distance(self, colors, matrix=True):
         if matrix is False:
             return self._perceptual_distance_list(colors)
         else:
@@ -63,10 +63,18 @@ class PerceptualDistanceBenchmark(ColorsBenchmark):
                 ci_pd.append(delta_e_cie2000(ci, cj))
             pd.append(ci_pd)
 
+        pd_noticable = []
+        for pd_row in pd:
+            pd_noticable_row = []
+            for d in pd_row:
+                pd_noticable_row.append(self._delta_e_noticable_distance(d))
+            pd_noticable.append(pd_noticable_row)
+
         return {
             "colors": self.hex,
             "lab": [c.get_value_tuple() for c in colors],
             "distances": pd,
+            "noticable": pd_noticable,
         }
 
     def _perceptual_distance_list(self, colors, sort=False):
@@ -92,7 +100,7 @@ class PerceptualDistanceBenchmark(ColorsBenchmark):
             }
         else:
             distances = [
-                delta_e_cie2000(c1, c2) for c1, c2 in zip(colors[:-2], colors[1:])
+                delta_e_cie2000(c1, c2) for c1, c2 in zip(colors[:-1], colors[1:])
             ]
             res = {
                 "hex": self.hex,
@@ -100,7 +108,23 @@ class PerceptualDistanceBenchmark(ColorsBenchmark):
                 "distances": distances,
             }
 
+        res["noticable"] = [
+            self._delta_e_noticable_distance(d) for d in res["distances"]
+        ]
+
         return res
+
+    def _delta_e_noticable_distance(self, distance, threshold=5):
+        """Decide whether the two colors are noticable based on deltaE distance
+
+        The choice of the threshold is based on the following paper:
+
+        Mokrzycki WS, Tatol M. Color difference Delta E - A survey. Machine Graphics and Vision. 2011;20: 383–411. Available: https://www.semanticscholar.org/paper/Color-difference-Delta-E-A-survey/67d9178f7bad9686c002b721138e26124f6e2e35
+        """
+        if distance > threshold:
+            return True
+        else:
+            return False
 
     @staticmethod
     def _sort_on_distance(lab_colors, distance_metric, reference_color=None):
@@ -132,8 +156,10 @@ class LightnessBenchmark(ColorsBenchmark):
 
     def metric(self):
         return {
-            "method": "perceptual_distance",
-            "data": self._lightness_benchmark(self.LabColor, min_lightness=25, max_lightness=85)
+            "method": "lightness",
+            "data": self._lightness_benchmark(
+                self.LabColor, min_lightness=25, max_lightness=85
+            ),
         }
 
     def _smaller_than_max(self, color, max_lightness=85):
@@ -152,9 +178,16 @@ class LightnessBenchmark(ColorsBenchmark):
             "lightness": [c.lab_l for c in colors],
             "min_lightness": min_lightness,
             "max_lightness": max_lightness,
-            "smaller_than_max": [self._smaller_than_max(c, max_lightness) for c in colors],
-            "greater_than_min": [self._greater_than_min(c, min_lightness) for c in colors],
-            "bounded_by_min_max": [self._bounded_by_min_max(c, min_lightness, max_lightness) for c in colors]
+            "smaller_than_max": [
+                self._smaller_than_max(c, max_lightness) for c in colors
+            ],
+            "greater_than_min": [
+                self._greater_than_min(c, min_lightness) for c in colors
+            ],
+            "bounded_by_min_max": [
+                self._bounded_by_min_max(c, min_lightness, max_lightness)
+                for c in colors
+            ],
         }
 
 
