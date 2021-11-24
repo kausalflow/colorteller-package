@@ -11,9 +11,6 @@ def prepare_paths(target):
     if not target.exists():
         target.mkdir(parents=True, exist_ok=True)
 
-    metrics_to = target/"metrics.json"
+    metrics_to = target / "metrics.json"
 
-    return {
-        "target": target,
-        "metrics_to": metrics_to
-    }
+    return {"target": target, "metrics_to": metrics_to}

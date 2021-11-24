@@ -60,7 +60,6 @@ def benchmark(hex_strings, target, with_benchmark_charts):
 
     metrics = colors.metrics(methods=[PerceptualDistanceBenchmark, LightnessBenchmark])
 
-
     if target:
         paths = prepare_paths(target)
         target = paths["target"]
@@ -80,6 +79,3 @@ def benchmark(hex_strings, target, with_benchmark_charts):
         click.echo(f"Saved distance_matrix chart to folder {target}.")
         vis_bm.noticable_matrix(show=False, save_to=True)
         click.echo(f"Saved noticable_matrix chart to folder {target}.")
-
-
-

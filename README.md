@@ -4,6 +4,8 @@
 
 Benchmark color palettes.
 
+`pip install colorteller`
+
 
 ## How to Use Command Line Tool
 
