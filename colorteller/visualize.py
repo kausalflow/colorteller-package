@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 from loguru import logger
-from .utils.chart import distance_matrix, noticable_matrix
+from colorteller.utils.chart import distance_matrix, noticable_matrix
 from pathlib import Path
+import colorteller.data.dataset as ds
 
 
 class Charts:
@@ -74,3 +75,18 @@ class BenchmarkCharts(Charts):
             return ax
         else:
             self._save_fig(save_to=save_to, name="noticable_matrix.png")
+
+
+class ApplicationCharts(Charts):
+    def __init__(self, colors, save_folder=None) -> None:
+        super().__init__(save_folder=save_folder)
+        self.colors = colors
+
+    def bar_chart(self, ax=None, show=False, save_to=None):
+        hex_strings = self.colors.hex
+        tds = ds.TwoDimScalar(column=hex_strings, index=5)
+
+        ax = tds.data().plot.bar(stacked=True, color=hex_strings)
+        plt.show()
+
+        return ax
