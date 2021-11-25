@@ -11,4 +11,6 @@ Benchmark color palettes.
 https://colorteller.kausalflow.com
 
 
+## How to Use
+
 

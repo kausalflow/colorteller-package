@@ -1,0 +1,94 @@
+# mkdocs.yml
+site_name: "ColorTeller Package Documentation"
+site_author: L Ma
+site_description: "ColorTeller benchmarks your color palettes"
+site_url: "https://kausalflow.github.io/colorteller-package"
+repo_url: "https://github.com/kausalflow/colorteller-package"
+edit_uri: "blob/main/docs/"
+repo_name: "kausalflow/colorteller-package"
+
+
+theme:
+  name: "material"
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+
+  # Default values, taken from mkdocs_theme.yml
+  language: en
+  features:
+    # - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: red
+      accent: red
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/logo.png
+  logo: assets/logo_badge.svg
+
+
+
+markdown_extensions:
+  - admonition
+  - pymdownx.emoji
+  - pymdownx.magiclink
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist
+  - toc:
+      permalink: "¤"
+
+plugins:
+  - autorefs
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          setup_commands:
+            - import sys
+            - sys.path.append("docs")
+          selection:
+            docstring_style: "restructured-text"
+            members: yes
+            filters:
+              - "^_[^_]"
+      watch:
+        - colorteller
+
+
+nav:
+  - "Home": index.md
+  - References:
+    - "Introduction": references/index.md
+    - "Data":
+      - "Introduction": references/data/index.md
+      - "data.dataset": references/data/dataset.md
+    - "Utils":
+      - "Introduction": references/utils/index.md
+      - "utils.benchmark": references/utils/benchmark.md
+      - "utils.chart": references/utils/chart.md
+      - "utils.cmd": references/utils/cmd.md
+      - "utils.color": references/utils/color.md
+      - "utils.hex": references/utils/hex.md
+      - "utils.sort": references/utils/sort.md
+    - "Commandline": references/command.md
+    - "Teller": references/teller.md
+    - "Visualize": references/visualize.md
+    - "Lab":
+      - "Lab": references/lab/index.md
+  - "Changelog": changelog.md
