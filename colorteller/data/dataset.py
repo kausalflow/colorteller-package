@@ -8,50 +8,65 @@ class Dataset:
 
 
 class TwoDimScalar(Dataset):
-    def __init__(self, ranks=None, index=None, limits=None, seed=None):
+    def __init__(self, column=None, index=None, limits=None, seed=None):
         super().__init__()
 
-        if ranks is None:
-            ranks = 2
+        if column is None:
+            column = 2
         if index is None:
-            index = ['x', 'y']
+            index = 5
         if limits is None:
             limits = [0, 100]
 
-        if not isinstance(ranks, int):
-            raise TypeError("ranks must be a int")
-        if not isinstance(index, (list, tuple)):
-            raise TypeError("index must be a list or tuple")
+        if isinstance(column, int):
+            column = self._columns(column)
+        elif not isinstance(column, (list, tuple)):
+            raise TypeError("column should be: int, list or tuple")
+        if isinstance(index, int):
+            index = self._indices(index)
+        elif not isinstance(index, (list, tuple)):
+            raise TypeError("index should be int, list or tuple")
         if not isinstance(limits, (list, tuple)):
             raise TypeError("limits must be a list or tuple")
 
-        self.ranks = ranks
+        self.column = column
         self.limits = limits
         self.index = index
-        self.columns = self._columns()
         self.seed = seed
 
-    def _columns(self):
+    def _columns(self, length):
         column_names = []
 
-        for i in range(self.ranks):
+        for i in range(length):
             column_names.append(f"col_{i}")
 
         return column_names
 
+    def _indices(self, length):
+        index = []
+
+        for i in range(length):
+            index.append(f"idx_{i}")
+
+        return index
+
     def data(self):
         data = self._rand_data()
-        dataframe = pd.DataFrame(data, columns=self.columns)
+        dataframe = pd.DataFrame(data, columns=self.column, index=self.index)
 
         return dataframe
 
     def _rand_data(self):
         np.random.seed(self.seed)
-        return np.random.rand(self.ranks, self.rows)
+        return np.random.rand(self.rows, self.columns)
 
     @property
     def rows(self):
         return len(self.index)
+
+    @property
+    def columns(self):
+        return len(self.column)
 
     @property
     def min(self):
