@@ -32,4 +32,8 @@ def test__visualize___Charts():
 
     ac = ApplicationCharts(colors=c, save_folder=".")
 
-    ac.bar_chart(show=True)
+    # ac.bar_chart(show=False)
+    # ac.line_chart(show=False)
+    # ac.scatter_chart(show=False)
+    # ac.donut_chart(show=True)
+    ac.charts(save_to=True)
