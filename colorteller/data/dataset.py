@@ -8,7 +8,7 @@ class Dataset:
 
 
 class TwoDimScalar(Dataset):
-    def __init__(self, ranks=None, index=None, limits=None):
+    def __init__(self, ranks=None, index=None, limits=None, seed=None):
         super().__init__()
 
         if ranks is None:
@@ -25,10 +25,11 @@ class TwoDimScalar(Dataset):
         if not isinstance(limits, (list, tuple)):
             raise TypeError("limits must be a list or tuple")
 
-        self.dims = ranks
+        self.ranks = ranks
         self.limits = limits
         self.index = index
         self.columns = self._columns()
+        self.seed = seed
 
     def _columns(self):
         column_names = []
@@ -45,7 +46,8 @@ class TwoDimScalar(Dataset):
         return dataframe
 
     def _rand_data(self):
-        return np.random.rand(self.ranks, self.rows).tolist()
+        np.random.seed(self.seed)
+        return np.random.rand(self.ranks, self.rows)
 
     @property
     def rows(self):
