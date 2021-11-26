@@ -91,7 +91,7 @@ class ColorTeller:
         rgb_tuples = [Hex(h).rgb for h in self.hex]
         return rgb_tuples
 
-    def get_hex_strings(self, colorteller_raw: Union[dict, str]) -> list:
+    def get_hex_strings(self, colorteller_raw: Union[dict, str, None]) -> list:
         """Extract hex_strings from colorteller web service json or dict representation of the color palette.
 
         :param colorteller_raw: A dict (or json string of dict) of the raw response from colorteller web service.
@@ -172,21 +172,32 @@ class Colors:
 
     @property
     def hex(self):
+        """a list of hex strings"""
         return self.colorteller.hex
 
     @property
     def rgb(self):
+        """a list of rgb tuples"""
         return self.colorteller.rgb
 
     @property
     def sRGBColor(self):
+        """a list of sRGBColor objects"""
         return [sRGBColor(*rgb, is_upscaled=True) for rgb in self.rgb]
 
     @property
     def LabColor(self):
+        """a list of LabColor objects"""
         return [convert_color(c, LabColor) for c in self.sRGBColor]
 
-    def metrics(self, methods=None):
+    def metrics(self, methods: Optional[list] = None):
+        """Calculates a list of metrics using the methods provided.
+
+        :param methods: A list of methods to use to calculate the metrics.
+        :type methods: list
+        :return: A list of metrics.
+        :rtype: list
+        """
         if methods is None:
             methods = []
 

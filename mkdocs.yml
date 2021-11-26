@@ -79,7 +79,10 @@ extra:
       link: https://github.com/kausalflow/colorteller-package
 
 nav:
-  - "Python Package Docs Home": index.md
+  - "Docs Home":
+    - "Overview": index.md
+    - "Usage": usage.md
+    - "Reading Results": results.md
   - References:
     - "Introduction": references/index.md
     - "Data":

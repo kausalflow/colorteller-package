@@ -4,12 +4,18 @@ from colorteller.utils.chart import distance_matrix, noticable_matrix
 from pathlib import Path
 import colorteller.data.dataset as ds
 import seaborn as sns
+from typing import List, Tuple, Union, Optional
 
 sns.set(style="white")
 
 
 class Charts:
-    def __init__(self, save_folder=None) -> None:
+    """A base class for charts. This class is not meant to be used directly.
+
+    :param save_folder: which folder to save the charts to.
+    """
+
+    def __init__(self, save_folder: Optional[Union[str, Path]] = None) -> None:
 
         self.save_folder = save_folder
         if not (self.save_folder is None):
@@ -17,9 +23,9 @@ class Charts:
                 self.save_folder = Path(self.save_folder)
 
     def _save_fig(self, save_to, name):
-        """save fig to file
+        """Save fig to file. Only call this method after establishing a matplotlib axis object (ax)
 
-        Call this method after establishing ax
+        :param save_to: the path to save the figure as. If this is set to `True`, the figure will be saved to `self.save_folder / name`. If this is set to a specific path, the figure will be saved to that path.
         """
 
         if save_to is None:
@@ -36,6 +42,32 @@ class Charts:
 
 
 class BenchmarkCharts(Charts):
+    """Create charts of benchmarks.
+
+    ```python
+    from colorteller import teller
+    from colorteller.utils import benchmark
+    from colorteller.visualize import BenchmarkCharts, ApplicationCharts
+
+    hex_strings = ["#8de4d3", "#344b46", "#74ee65", "#238910", "#a6c363", "#509d99"]
+
+    ct = teller.ColorTeller(hex_strings=hex_strings)
+    c = teller.Colors(colorteller=ct)
+    m = c.metrics(
+        methods=[benchmark.PerceptualDistanceBenchmark, benchmark.LightnessBenchmark]
+    )
+
+    charts = BenchmarkCharts(metrics=m, save_folder=".")
+    charts.distance_matrix(show=False)
+    charts.noticable_matrix(show=False)
+    ```
+
+    :param metrics: a list of benchmark metrics. It is created by `teller.Colors` object. Use `teller.Colors.metrics(methods=[colorteller.utils.PerceptualDistanceBenchmark, colorteller.utils.LightnessBenchmark])`
+    :type metrics: list
+    :param save_folder: the folder to save the charts to.
+    :type save_folder: Union[str, Path]
+    """
+
     def __init__(self, metrics, save_folder=None) -> None:
         super().__init__(save_folder=save_folder)
 

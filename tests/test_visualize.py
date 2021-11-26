@@ -36,4 +36,4 @@ def test__visualize___Charts():
     # ac.line_chart(show=False)
     # ac.scatter_chart(show=False)
     # ac.donut_chart(show=True)
-    ac.charts(save_to=True)
+    ac.charts()
