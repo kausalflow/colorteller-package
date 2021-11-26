@@ -64,15 +64,22 @@ plugins:
             - sys.path.append("docs")
           selection:
             docstring_style: "restructured-text"
-            members: yes
+            members: True
             filters:
               - "^_[^_]"
       watch:
         - colorteller
 
 
+extra:
+  social:
+    - icon: fontawesome/solid/palette
+      link: https://colorteller.kausalflow.com
+    - icon: fontawesome/brands/github
+      link: https://github.com/kausalflow/colorteller-package
+
 nav:
-  - "Home": index.md
+  - "Python Package Docs Home": index.md
   - References:
     - "Introduction": references/index.md
     - "Data":
@@ -86,9 +93,11 @@ nav:
       - "utils.color": references/utils/color.md
       - "utils.hex": references/utils/hex.md
       - "utils.sort": references/utils/sort.md
-    - "Commandline": references/command.md
-    - "Teller": references/teller.md
-    - "Visualize": references/visualize.md
-    - "Lab":
-      - "Lab": references/lab/index.md
+    - "Commandline":
+      - "command": references/command.md
+    - "Teller":
+      - "teller": references/teller.md
+    - "Visualize":
+      - "visualize": references/visualize.md
   - "Changelog": changelog.md
+  - "ColorTeller Website": https://colorteller.kausalflow.com

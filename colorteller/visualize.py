@@ -128,8 +128,10 @@ class ApplicationCharts(Charts):
         df = tds.data().reset_index()
 
         ax = df.plot.scatter(
-            x="index", y=self.hex_strings[0], color=self.hex_strings[0],
-            label=self.hex_strings[0]
+            x="index",
+            y=self.hex_strings[0],
+            color=self.hex_strings[0],
+            label=self.hex_strings[0],
         )
         for h in self.hex_strings[1:]:
             df.plot.scatter(x="index", y=h, ax=ax, color=h, label=h)
@@ -152,10 +154,8 @@ class ApplicationCharts(Charts):
         ods_const = self.data["one_dim_scalar__const"]
         df = ods_const.data()
 
-        ax = df.plot.pie(
-            colors=self.hex_strings
-        )
-        centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+        ax = df.plot.pie(colors=self.hex_strings)
+        centre_circle = plt.Circle((0, 0), 0.70, fc="white")
         fig = plt.gcf()
         fig.gca().add_artist(centre_circle)
         ax.set_xlabel("")
@@ -185,4 +185,3 @@ class ApplicationCharts(Charts):
             res[k] = dispatcher[k]
 
         return res
-

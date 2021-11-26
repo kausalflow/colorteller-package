@@ -1,4 +1,5 @@
 import json
+from typing import Optional, Union
 
 from colormath.color_conversions import convert_color
 from colormath.color_objects import LabColor, sRGBColor
@@ -8,9 +9,52 @@ from .utils.hex import Hex
 
 
 class ColorTeller:
-    """A middleware for colorteller web service and benchmarking colors."""
+    """A middleware for colorteller web service and benchmarking colors. It takes the color representations on the colorteller web service and converts them to an easy-to-use object.
 
-    def __init__(self, colorteller_raw=None, hex_strings=None) -> None:
+    There are two different methods to instantiate a ColorTeller object:
+
+    1. Provide a list of hex strings.
+    2. Provide a dictionary or json string from the colorteller web service.
+
+    Here are some examples:
+
+    1. Using a list of hex strings:
+
+        ```python
+        from colorteller import teller
+
+        hex_strings = [
+            "#8de4d3", "#344b46", "#74ee65", "#238910", "#a6c363", "#509d99"
+        ]
+        ct = teller.ColorTeller(hex_strings=hex_strings)
+        ```
+
+    2. Using a json string:
+
+        ```python
+        from colorteller import teller
+
+        ct_raw = '{"author":"KausalFlow","colors":[{"hex":"#8de4d3","name":""},{"hex":"#344b46"},{"hex":"#74ee65"},{"hex":"#238910"},{"hex":"#a6c363"},{"hex":"#509d99"}],"date":1637142696,"expirydate":-62135596800,"file":"bobcat-yellow","hex":["8de4d3","344b46","74ee65","238910","a6c363","509d99"],"images":null,"objectID":"e0e129c8ed58316127909db84c67efcb","permalink":"//localhost:1234/colors/bobcat-yellow/","publishdate":"2021-11-17T10:51:36+01:00","summary":"This is an experiment","tags":null,"title":"Bobcat Yellow"}'
+        hex_results = [
+            "#8de4d3", "#344b46", "#74ee65", "#238910", "#a6c363", "#509d99"
+        ]
+        ct = teller.ColorTeller(ct_raw)
+        ```
+
+    !!! note
+        While we can use this to get some properties of the palette, this is mostly for downstream tasks.
+
+    :param colorteller_raw: A dict (or json string of dict) of the raw response from colorteller web service, defaults to [DefaultParamVal]
+    :type colorteller_raw: Union[dict, str]
+    :param hex_strings: A list of hex strings for the color palette.
+    :type hex_strings: list
+    """
+
+    def __init__(
+        self,
+        colorteller_raw: Optional[Union[dict, str]] = None,
+        hex_strings: Optional[list] = None,
+    ) -> None:
 
         if (hex_strings is not None) and (colorteller_raw is not None):
             logger.warning(f"hex_strings is provided, will ignore colorteller_raw.")
@@ -27,19 +71,33 @@ class ColorTeller:
         else:
             raise Exception("No hex_strings or colorteller_raw provided.")
 
-    def from_hex(self, hex_string):
-        self.hex_strings = hex_string
+    def from_hex(self, hex_strings: list) -> None:
+        """set `hex_strings` property using a list of hex_strings.
+
+        There is no return value. The `hex_strings` property is set using the input.
+
+        :param hex_strings: A list of hex strings for the color palette.
+        """
+        self.hex_strings = hex_strings
 
     @property
     def hex(self):
+        """a list of hex strings of the palette"""
         return self.hex_strings
 
     @property
     def rgb(self):
+        """a list of rgb tuples of the palette"""
         rgb_tuples = [Hex(h).rgb for h in self.hex]
         return rgb_tuples
 
-    def get_hex_strings(self, colorteller_raw):
+    def get_hex_strings(self, colorteller_raw: Union[dict, str]) -> list:
+        """Extract hex_strings from colorteller web service json or dict representation of the color palette.
+
+        :param colorteller_raw: A dict (or json string of dict) of the raw response from colorteller web service.
+        :return: A list of hex strings for the color palette.
+        :rtype: list
+        """
         if colorteller_raw is None:
             return []
         colorteller_raw = colorteller_raw
@@ -50,15 +108,52 @@ class ColorTeller:
 
     @staticmethod
     def str_to_json(data_raw):
+        """convert the json string to dictionary
+
+        :param data_raw: A json string of the raw response from colorteller web service.
+        :return: dictionary of the raw response from colorteller web service.
+        :rtype: dict
+        """
         return json.loads(data_raw)
 
 
 class Colors:
-    """
-    Basic information about the provided colors.
+    """A color palette container with benchmark results.
+
+    To instantiate a Colors object, provide a list of hex strings (`color_palette`) or a ColorTeller object (`colorteller`).
+
+    !!! warning
+        If `colorteller` is provided, the `color_palette` argument will be ignored.
+
+    ```python
+    from colorteller import teller
+
+    hex_strings = [
+        "#8de4d3", "#344b46", "#74ee65", "#238910", "#a6c363", "#509d99"
+    ]
+    ct = teller.ColorTeller(hex_strings=hex_strings)
+    c = teller.Colors(colorteller=ct)
+    ```
+
+    We could get the metrics from the Colors object.
+
+    ```python
+    from colorteller.utils import benchmark
+
+    m = c.metrics(methods=[benchmark.PerceptualDistanceBenchmark])
+    ```
+
+    :param color_palette: A list of hex strings.
+    :type color_palette: list
+    :param colorteller: an ColorTeller object
+    :type colorteller: ColorTeller
     """
 
-    def __init__(self, color_palette=None, colorteller=None):
+    def __init__(
+        self,
+        color_palette: Optional[list] = None,
+        colorteller: Optional[ColorTeller] = None,
+    ):
 
         if (color_palette is not None) and (colorteller is not None):
             logger.warning(f"colorteller is provided, will ignore color_palette.")
