@@ -85,6 +85,8 @@ nav:
     - "Overview": index.md
     - "Usage": usage.md
     - "Reading Results": results.md
+  - "Tutorials":
+    - "References": tutorials/references.md
   - References:
     - "Introduction": references/index.md
     - "Data":
