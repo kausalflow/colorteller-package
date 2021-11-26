@@ -37,7 +37,7 @@ theme:
     text: Roboto
     code: Roboto Mono
   favicon: assets/logo.png
-  logo: assets/logo_badge.svg
+  logo: assets/logo_badge.png
 
 
 
@@ -77,6 +77,8 @@ extra:
       link: https://colorteller.kausalflow.com
     - icon: fontawesome/brands/github
       link: https://github.com/kausalflow/colorteller-package
+    - icon: fontawesome/solid/seedling
+      link: http://kausalflow.com
 
 nav:
   - "Docs Home":

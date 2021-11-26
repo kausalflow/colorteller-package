@@ -1,6 +1,8 @@
 # Documentation for ColorTeller
 
-Colorteller is a package to benchmark color palettes.
+![](assets/facebook_cover_photo_2.png)
+
+ColorTeller is a package to benchmark color palettes.
 
 > Teller is plate in German.
 
