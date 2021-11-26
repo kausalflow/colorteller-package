@@ -51,7 +51,7 @@ If multiple benchmarks are provided, i.e., `methods=[benchmark.PerceptualDistanc
 
 ### Visualizations
 
-### Perceptual Distance
+#### Perceptual Distance
 
 The following results are the results for `["#208eb7", "#8bd0eb", "#214a65", "#52dcbc"]`.
 
@@ -74,13 +74,13 @@ The following results are the results for `["#208eb7", "#8bd0eb", "#214a65", "#5
 
 
 
-### Lightness
+#### Lightness
 
 
 !!! warning "WIP"
     Not yet visualized.
 
-### Emperical
+#### Emperical
 
 We will automatically create several charts using the color palette.
 
