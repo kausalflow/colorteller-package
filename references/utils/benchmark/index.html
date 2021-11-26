@@ -1,0 +1,2324 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ColorTeller benchmarks your color palettes">
+      
+      
+      
+        <meta name="author" content="L Ma">
+      
+      
+        <link rel="canonical" href="https://kausalflow.github.io/colorteller-package/references/utils/benchmark/">
+      
+      <link rel="icon" href="../../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>utils.benchmark - ColorTeller Package Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#utils-benchmark" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="ColorTeller Package Documentation" class="md-header__button md-logo" aria-label="ColorTeller Package Documentation" data-md-component="logo">
+      
+  <img src="../../../assets/logo_badge.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ColorTeller Package Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              utils.benchmark
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/kausalflow/colorteller-package/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kausalflow/colorteller-package
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        Docs Home
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tutorials/references/" class="md-tabs__link">
+        Tutorials
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        References
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../changelog/" class="md-tabs__link">
+      Changelog
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="https://colorteller.kausalflow.com" class="md-tabs__link">
+      ColorTeller Website
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ColorTeller Package Documentation" class="md-nav__button md-logo" aria-label="ColorTeller Package Documentation" data-md-component="logo">
+      
+  <img src="../../../assets/logo_badge.png" alt="logo">
+
+    </a>
+    ColorTeller Package Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/kausalflow/colorteller-package/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kausalflow/colorteller-package
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Docs Home
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Docs Home" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Docs Home
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../usage/" class="md-nav__link">
+        Usage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../results/" class="md-nav__link">
+        Reading Results
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Tutorials
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/references/" class="md-nav__link">
+        References
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          References
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="References" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          References
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Data" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/dataset/" class="md-nav__link">
+        data.dataset
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          Utils
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Utils" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Utils
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          utils.benchmark
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        utils.benchmark
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#utils-benchmark" class="md-nav__link">
+    Utils - Benchmark
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark" class="md-nav__link">
+    colorteller.utils.benchmark
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.ColorsBenchmark" class="md-nav__link">
+    ColorsBenchmark
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.LightnessBenchmark" class="md-nav__link">
+    LightnessBenchmark
+  </a>
+  
+    <nav class="md-nav" aria-label="LightnessBenchmark">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.LightnessBenchmark._bounded_by_min_max" class="md-nav__link">
+    _bounded_by_min_max()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.LightnessBenchmark._greater_than_min" class="md-nav__link">
+    _greater_than_min()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.LightnessBenchmark._lightness_benchmark" class="md-nav__link">
+    _lightness_benchmark()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.LightnessBenchmark._smaller_than_max" class="md-nav__link">
+    _smaller_than_max()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.LightnessBenchmark.metric" class="md-nav__link">
+    metric()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark" class="md-nav__link">
+    PerceptualDistanceBenchmark
+  </a>
+  
+    <nav class="md-nav" aria-label="PerceptualDistanceBenchmark">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._delta_e_noticable_distance" class="md-nav__link">
+    _delta_e_noticable_distance()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._perceptual_distance" class="md-nav__link">
+    _perceptual_distance()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._perceptual_distance_list" class="md-nav__link">
+    _perceptual_distance_list()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._perceptual_distance_matrix" class="md-nav__link">
+    _perceptual_distance_matrix()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._sort_on_distance" class="md-nav__link">
+    _sort_on_distance()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark.metric" class="md-nav__link">
+    metric()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chart/" class="md-nav__link">
+        utils.chart
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cmd/" class="md-nav__link">
+        utils.cmd
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../color/" class="md-nav__link">
+        utils.color
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hex/" class="md-nav__link">
+        utils.hex
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sort/" class="md-nav__link">
+        utils.sort
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_4">
+          Commandline
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Commandline" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Commandline
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../command/" class="md-nav__link">
+        command
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5">
+          Teller
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Teller" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Teller
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teller/" class="md-nav__link">
+        teller
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6" type="checkbox" id="__nav_3_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_6">
+          Visualize
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Visualize" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_6">
+          <span class="md-nav__icon md-icon"></span>
+          Visualize
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../visualize/" class="md-nav__link">
+        visualize
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://colorteller.kausalflow.com" class="md-nav__link">
+        ColorTeller Website
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#utils-benchmark" class="md-nav__link">
+    Utils - Benchmark
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark" class="md-nav__link">
+    colorteller.utils.benchmark
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.ColorsBenchmark" class="md-nav__link">
+    ColorsBenchmark
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.LightnessBenchmark" class="md-nav__link">
+    LightnessBenchmark
+  </a>
+  
+    <nav class="md-nav" aria-label="LightnessBenchmark">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.LightnessBenchmark._bounded_by_min_max" class="md-nav__link">
+    _bounded_by_min_max()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.LightnessBenchmark._greater_than_min" class="md-nav__link">
+    _greater_than_min()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.LightnessBenchmark._lightness_benchmark" class="md-nav__link">
+    _lightness_benchmark()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.LightnessBenchmark._smaller_than_max" class="md-nav__link">
+    _smaller_than_max()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.LightnessBenchmark.metric" class="md-nav__link">
+    metric()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark" class="md-nav__link">
+    PerceptualDistanceBenchmark
+  </a>
+  
+    <nav class="md-nav" aria-label="PerceptualDistanceBenchmark">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._delta_e_noticable_distance" class="md-nav__link">
+    _delta_e_noticable_distance()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._perceptual_distance" class="md-nav__link">
+    _perceptual_distance()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._perceptual_distance_list" class="md-nav__link">
+    _perceptual_distance_list()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._perceptual_distance_matrix" class="md-nav__link">
+    _perceptual_distance_matrix()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._sort_on_distance" class="md-nav__link">
+    _sort_on_distance()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark.metric" class="md-nav__link">
+    metric()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/kausalflow/colorteller-package/blob/main/docs/references/utils/benchmark.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>utils.benchmark</h1>
+                
+                <h2 id="utils-benchmark">Utils - Benchmark<a class="headerlink" href="#utils-benchmark" title="Permanent link">¤</a></h2>
+
+
+  <div class="doc doc-object doc-module">
+
+<a id="colorteller.utils.benchmark"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 id="colorteller.utils.benchmark.ColorsBenchmark" class="doc doc-heading">
+        <code>
+ColorsBenchmark        </code>
+
+
+
+<a href="#colorteller.utils.benchmark.ColorsBenchmark" class="headerlink" title="Permanent link">¤</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>A base class to create charts to benchmark the color palettes.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>colors</code></td>
+        <td></td>
+        <td><p>teller.Colors objects which has properties such as hex.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 id="colorteller.utils.benchmark.LightnessBenchmark" class="doc doc-heading">
+        <code>
+LightnessBenchmark            (<a title="colorteller.utils.benchmark.ColorsBenchmark" href="#colorteller.utils.benchmark.ColorsBenchmark">ColorsBenchmark</a>)
+        </code>
+
+
+
+<a href="#colorteller.utils.benchmark.LightnessBenchmark" class="headerlink" title="Permanent link">¤</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Benchmark color palette based on lightness.</p>
+<div class="admonition note">
+<p class="admonition-title">Lightness</p>
+<p>If a color is too light, it would be very hard to read on white background. If a color is too dark, it would be hard to read on black background.</p>
+</div>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>colors</code></td>
+        <td></td>
+        <td><p>teller.Colors object which has properties such as hex.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="colorteller.utils.benchmark.LightnessBenchmark._bounded_by_min_max" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_bounded_by_min_max</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">min_lightness</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">max_lightness</span><span class="o">=</span><span class="mi">85</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-private"><code>private</code></small>
+  </span>
+
+<a href="#colorteller.utils.benchmark.LightnessBenchmark._bounded_by_min_max" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Wheter the color lightness is bounded by min and max.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>color</code></td>
+        <td></td>
+        <td><p>a color in Lab color space with a <code>lab_l</code> property</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>min_lightness</code></td>
+        <td></td>
+        <td><p>the min lightness value, defaults to 25</p></td>
+        <td><code>25</code></td>
+      </tr>
+      <tr>
+        <td><code>max_lightness</code></td>
+        <td></td>
+        <td><p>the max lightness value, defaults to 85</p></td>
+        <td><code>85</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>colorteller/utils/benchmark.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_bounded_by_min_max</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">min_lightness</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">max_lightness</span><span class="o">=</span><span class="mi">85</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Wheter the color lightness is bounded by min and max.</span>
+
+<span class="sd">    :param color: a color in Lab color space with a `lab_l` property</span>
+<span class="sd">    :param min_lightness: the min lightness value, defaults to 25</span>
+<span class="sd">    :param max_lightness: the max lightness value, defaults to 85</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_greater_than_min</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">min_lightness</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_smaller_than_max</span><span class="p">(</span>
+        <span class="n">color</span><span class="p">,</span> <span class="n">max_lightness</span>
+    <span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="colorteller.utils.benchmark.LightnessBenchmark._greater_than_min" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_greater_than_min</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">min_lightness</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-private"><code>private</code></small>
+  </span>
+
+<a href="#colorteller.utils.benchmark.LightnessBenchmark._greater_than_min" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Whether the lightness of the color is lighter than the min value set here.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>color</code></td>
+        <td></td>
+        <td><p>a color in Lab color space with a <code>lab_l</code> property</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>min_lightness</code></td>
+        <td><code>int</code></td>
+        <td><p>the min lightness value, defaults to 25</p></td>
+        <td><code>25</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>colorteller/utils/benchmark.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_greater_than_min</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">min_lightness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">25</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Whether the lightness of the color is lighter than the min value set here.</span>
+
+<span class="sd">    :param color: a color in Lab color space with a `lab_l` property</span>
+<span class="sd">    :param min_lightness: the min lightness value, defaults to 25</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">color</span><span class="o">.</span><span class="n">lab_l</span> <span class="o">&gt;=</span> <span class="n">min_lightness</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="colorteller.utils.benchmark.LightnessBenchmark._lightness_benchmark" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_lightness_benchmark</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">min_lightness</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">max_lightness</span><span class="o">=</span><span class="mi">85</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-private"><code>private</code></small>
+  </span>
+
+<a href="#colorteller.utils.benchmark.LightnessBenchmark._lightness_benchmark" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>_lightness_benchmark calculates all the benchmarks based on lightness.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>colors</code></td>
+        <td><code>list</code></td>
+        <td><p>a list of colors in Lab color space</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>min_lightness</code></td>
+        <td><code>int, optional</code></td>
+        <td><p>the min lightness value, defaults to 25</p></td>
+        <td><code>25</code></td>
+      </tr>
+      <tr>
+        <td><code>max_lightness</code></td>
+        <td><code>int, optional</code></td>
+        <td><p>the max lightness value, defaults to 85</p></td>
+        <td><code>85</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>dict</code></td>
+      <td><p>the benchmark results</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>colorteller/utils/benchmark.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_lightness_benchmark</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">min_lightness</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">max_lightness</span><span class="o">=</span><span class="mi">85</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;_lightness_benchmark calculates all the benchmarks based on lightness.</span>
+
+<span class="sd">    :param colors: a list of colors in Lab color space</span>
+<span class="sd">    :type colors: list</span>
+<span class="sd">    :param min_lightness: the min lightness value, defaults to 25</span>
+<span class="sd">    :type min_lightness: int, optional</span>
+<span class="sd">    :param max_lightness: the max lightness value, defaults to 85</span>
+<span class="sd">    :type max_lightness: int, optional</span>
+<span class="sd">    :return: the benchmark results</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;lightness&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">lab_l</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">colors</span><span class="p">],</span>
+        <span class="s2">&quot;min_lightness&quot;</span><span class="p">:</span> <span class="n">min_lightness</span><span class="p">,</span>
+        <span class="s2">&quot;max_lightness&quot;</span><span class="p">:</span> <span class="n">max_lightness</span><span class="p">,</span>
+        <span class="s2">&quot;smaller_than_max&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_smaller_than_max</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">max_lightness</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">colors</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;greater_than_min&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_greater_than_min</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">min_lightness</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">colors</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;bounded_by_min_max&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_bounded_by_min_max</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">min_lightness</span><span class="p">,</span> <span class="n">max_lightness</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">colors</span>
+        <span class="p">],</span>
+    <span class="p">}</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="colorteller.utils.benchmark.LightnessBenchmark._smaller_than_max" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_smaller_than_max</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">max_lightness</span><span class="o">=</span><span class="mi">85</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-private"><code>private</code></small>
+  </span>
+
+<a href="#colorteller.utils.benchmark.LightnessBenchmark._smaller_than_max" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Whether the lightness of the color is larger than the max value set here</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>color</code></td>
+        <td></td>
+        <td><p>a color in Lab color space with a <code>lab_l</code> property</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>max_lightness</code></td>
+        <td><code>int</code></td>
+        <td><p>the max lightness value, defaults to 85</p></td>
+        <td><code>85</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>colorteller/utils/benchmark.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_smaller_than_max</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">max_lightness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">85</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Whether the lightness of the color is larger than the max value set here</span>
+
+<span class="sd">    :param color: a color in Lab color space with a `lab_l` property</span>
+<span class="sd">    :param max_lightness: the max lightness value, defaults to 85</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">color</span><span class="o">.</span><span class="n">lab_l</span> <span class="o">&lt;=</span> <span class="n">max_lightness</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="colorteller.utils.benchmark.LightnessBenchmark.metric" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">metric</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+<a href="#colorteller.utils.benchmark.LightnessBenchmark.metric" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>calculate the metrics of the current benchmark</p>
+
+        <details class="quote">
+          <summary>Source code in <code>colorteller/utils/benchmark.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">metric</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;calculate the metrics of the current benchmark&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;lightness&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lightness_benchmark</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">LabColor</span><span class="p">,</span> <span class="n">min_lightness</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">max_lightness</span><span class="o">=</span><span class="mi">85</span>
+        <span class="p">),</span>
+    <span class="p">}</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 id="colorteller.utils.benchmark.PerceptualDistanceBenchmark" class="doc doc-heading">
+        <code>
+PerceptualDistanceBenchmark            (<a title="colorteller.utils.benchmark.ColorsBenchmark" href="#colorteller.utils.benchmark.ColorsBenchmark">ColorsBenchmark</a>)
+        </code>
+
+
+
+<a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark" class="headerlink" title="Permanent link">¤</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Create benchmark based on perceptual distances.</p>
+<div class="admonition note">
+<p class="admonition-title">Used in <code>teller.Colors.metrics</code></p>
+<p>While this class can be used independently, it is mostly designed for the <code>methods</code> argument of <code>teller.Colors.metrics</code>, e.g., <code>methods=[PerceptualDistanceBenchmark]</code>.</p>
+</div>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>colors</code></td>
+        <td></td>
+        <td><p>teller.Colors object which has properties such as hex.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="colorteller.utils.benchmark.PerceptualDistanceBenchmark._delta_e_noticable_distance" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_delta_e_noticable_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-private"><code>private</code></small>
+  </span>
+
+<a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._delta_e_noticable_distance" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Decide whether the two colors are noticable based on deltaE distance.</p>
+<p>If the distance is larger than threshold, the two colors are noticable.</p>
+<div class="admonition note">
+<p class="admonition-title">References</p>
+<p>The choice of the threshold is based on the following paper:</p>
+<p>Mokrzycki WS, Tatol M. Color difference Delta E - A survey. Machine Graphics and Vision. 2011;20: 383–411. Available: <a href="https://www.semanticscholar.org/paper/Color-difference-Delta-E-A-survey/67d9178f7bad9686c002b721138e26124f6e2e35">https://www.semanticscholar.org/paper/Color-difference-Delta-E-A-survey/67d9178f7bad9686c002b721138e26124f6e2e35</a></p>
+</div>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>distance</code></td>
+        <td><code>float</code></td>
+        <td><p>the deltaE distance</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>threshold</code></td>
+        <td><code>Union[int, float]</code></td>
+        <td><p>the threshold to decide whether the two colors are noticable, defaults to 5</p></td>
+        <td><code>5</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>bool</code></td>
+      <td><p>whether the two colors are noticable</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>colorteller/utils/benchmark.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_delta_e_noticable_distance</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decide whether the two colors are noticable based on deltaE distance.</span>
+
+<span class="sd">    If the distance is larger than threshold, the two colors are noticable.</span>
+
+<span class="sd">    !!! note &quot;References&quot;</span>
+<span class="sd">        The choice of the threshold is based on the following paper:</span>
+
+<span class="sd">        Mokrzycki WS, Tatol M. Color difference Delta E - A survey. Machine Graphics and Vision. 2011;20: 383–411. Available: https://www.semanticscholar.org/paper/Color-difference-Delta-E-A-survey/67d9178f7bad9686c002b721138e26124f6e2e35</span>
+
+<span class="sd">    :param distance: the deltaE distance</span>
+<span class="sd">    :type distance: float</span>
+<span class="sd">    :param threshold: the threshold to decide whether the two colors are noticable, defaults to 5</span>
+<span class="sd">    :type threshold: int, optional</span>
+<span class="sd">    :return: whether the two colors are noticable</span>
+<span class="sd">    :rtype: bool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="colorteller.utils.benchmark.PerceptualDistanceBenchmark._perceptual_distance" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_perceptual_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">matrix</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-private"><code>private</code></small>
+  </span>
+
+<a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._perceptual_distance" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>_perceptual_distance takes a Colors object and returns a dict with the perceptual distance between each color in it.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>colors</code></td>
+        <td><code>Colors</code></td>
+        <td><p>a Colors object</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>matrix</code></td>
+        <td><code>bool, optional</code></td>
+        <td><p>whether to create a distance matrix, defaults to True</p></td>
+        <td><code>True</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>dict</code></td>
+      <td><p>a dictionary of the benchmark result</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>colorteller/utils/benchmark.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_perceptual_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">colors</span><span class="p">:</span> <span class="n">Colors</span><span class="p">,</span> <span class="n">matrix</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;_perceptual_distance takes a Colors object and returns a dict with the perceptual distance between each color in it.</span>
+
+<span class="sd">    :param colors: a Colors object</span>
+<span class="sd">    :param matrix: whether to create a distance matrix, defaults to True</span>
+<span class="sd">    :type matrix: bool, optional</span>
+<span class="sd">    :return: a dictionary of the benchmark result</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">matrix</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_perceptual_distance_list</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_perceptual_distance_matrix</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="colorteller.utils.benchmark.PerceptualDistanceBenchmark._perceptual_distance_list" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_perceptual_distance_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-private"><code>private</code></small>
+  </span>
+
+<a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._perceptual_distance_list" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Calculates a list of perceptual distance</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>colors</code></td>
+        <td></td>
+        <td><p>a Colors object</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>dict</code></td>
+      <td><p>a dictionary of the benchmark result</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>colorteller/utils/benchmark.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_perceptual_distance_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates a list of perceptual distance</span>
+
+<span class="sd">    :param colors: a Colors object</span>
+<span class="sd">    :return: a dictionary of the benchmark result</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Calculating perceptual distance for </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span><span class="si">}</span><span class="s2"> colors: </span><span class="si">{</span><span class="n">colors</span><span class="si">}</span><span class="s2">.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">sort</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sorting colors by perceptual distance.&quot;</span><span class="p">)</span>
+        <span class="n">sorted_lab_colors_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sort_on_distance</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">delta_e_cie2000</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sorted colors by perceptual distance: </span><span class="si">{</span><span class="n">sorted_lab_colors_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">sorted_lab_colors</span> <span class="o">=</span> <span class="n">sorted_lab_colors_</span><span class="p">[</span><span class="s2">&quot;colors&quot;</span><span class="p">]</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sorted colors by perceptual distance: </span><span class="si">{</span><span class="n">sorted_lab_colors</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">sorted_hex</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">hex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sorted_lab_colors_</span><span class="p">[</span><span class="s2">&quot;indices&quot;</span><span class="p">]]</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sorted colors by perceptual distance: </span><span class="si">{</span><span class="n">sorted_hex</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">delta_e_cie2000</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sorted_lab_colors</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sorted_lab_colors</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="p">]</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;hex&quot;</span><span class="p">:</span> <span class="n">sorted_hex</span><span class="p">,</span>
+            <span class="s2">&quot;lab&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">get_value_tuple</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">sorted_lab_colors</span><span class="p">],</span>
+            <span class="s2">&quot;distances&quot;</span><span class="p">:</span> <span class="n">distances</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">delta_e_cie2000</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">)</span> <span class="k">for</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">colors</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="p">]</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;hex&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">hex</span><span class="p">,</span>
+            <span class="s2">&quot;lab&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">get_value_tuple</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">colors</span><span class="p">],</span>
+            <span class="s2">&quot;distances&quot;</span><span class="p">:</span> <span class="n">distances</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="n">res</span><span class="p">[</span><span class="s2">&quot;noticable&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_delta_e_noticable_distance</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;distances&quot;</span><span class="p">]</span>
+    <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="colorteller.utils.benchmark.PerceptualDistanceBenchmark._perceptual_distance_matrix" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_perceptual_distance_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">colors</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-private"><code>private</code></small>
+  </span>
+
+<a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._perceptual_distance_matrix" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Calculates the perceptual distance matrix</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>colors</code></td>
+        <td></td>
+        <td><p>a Colors object</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>dict</code></td>
+      <td><p>a dictionary of the benchmark result</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>colorteller/utils/benchmark.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_perceptual_distance_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the perceptual distance matrix</span>
+
+<span class="sd">    :param colors: a Colors object</span>
+<span class="sd">    :return: a dictionary of the benchmark result</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pd</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ci</span> <span class="ow">in</span> <span class="n">colors</span><span class="p">:</span>
+        <span class="n">ci_pd</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">cj</span> <span class="ow">in</span> <span class="n">colors</span><span class="p">:</span>
+            <span class="n">ci_pd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">delta_e_cie2000</span><span class="p">(</span><span class="n">ci</span><span class="p">,</span> <span class="n">cj</span><span class="p">))</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ci_pd</span><span class="p">)</span>
+
+    <span class="n">pd_noticable</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">pd_row</span> <span class="ow">in</span> <span class="n">pd</span><span class="p">:</span>
+        <span class="n">pd_noticable_row</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">pd_row</span><span class="p">:</span>
+            <span class="n">pd_noticable_row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delta_e_noticable_distance</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+        <span class="n">pd_noticable</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd_noticable_row</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;colors&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">hex</span><span class="p">,</span>
+        <span class="s2">&quot;lab&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">get_value_tuple</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">colors</span><span class="p">],</span>
+        <span class="s2">&quot;distances&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="p">,</span>
+        <span class="s2">&quot;noticable&quot;</span><span class="p">:</span> <span class="n">pd_noticable</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="colorteller.utils.benchmark.PerceptualDistanceBenchmark._sort_on_distance" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_sort_on_distance</span><span class="p">(</span><span class="n">lab_colors</span><span class="p">,</span> <span class="n">distance_metric</span><span class="p">,</span> <span class="n">reference_color</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-private"><code>private</code></small>
+      <small class="doc doc-property doc-property-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark._sort_on_distance" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>sort the colors based on distance between each other.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>lab_colors</code></td>
+        <td><code>list</code></td>
+        <td><p>a list of colors in lab color space</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>distance_metric</code></td>
+        <td></td>
+        <td><p>the distance metric to use, it should be a function that takes two colors as arguments and returns the distance.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>reference_color</code></td>
+        <td></td>
+        <td><p>the reference color to use, defaults to None</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>colorteller/utils/benchmark.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">_sort_on_distance</span><span class="p">(</span><span class="n">lab_colors</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">distance_metric</span><span class="p">,</span> <span class="n">reference_color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;sort the colors based on distance between each other.</span>
+
+<span class="sd">    :param lab_colors: a list of colors in lab color space</span>
+<span class="sd">    :type lab_colors: list</span>
+<span class="sd">    :param distance_metric: the distance metric to use, it should be a function that takes two colors as arguments and returns the distance.</span>
+<span class="sd">    :param reference_color: the reference color to use, defaults to None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">reference_color</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">reference_color_rgb</span> <span class="o">=</span> <span class="n">sRGBColor</span><span class="p">(</span><span class="n">rgb_r</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">rgb_g</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">rgb_b</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+        <span class="n">reference_color</span> <span class="o">=</span> <span class="n">convert_color</span><span class="p">(</span><span class="n">reference_color_rgb</span><span class="p">,</span> <span class="n">LabColor</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reference_color</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">reference_color</span> <span class="o">==</span> <span class="s2">&quot;white&quot;</span><span class="p">:</span>
+            <span class="n">reference_color</span> <span class="o">=</span> <span class="n">convert_color</span><span class="p">(</span>
+                <span class="n">sRGBColor</span><span class="p">(</span><span class="n">rgb_r</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">rgb_g</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">rgb_b</span><span class="o">=</span><span class="mi">255</span><span class="p">),</span> <span class="n">LabColor</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">reference_color</span> <span class="o">==</span> <span class="s2">&quot;black&quot;</span><span class="p">:</span>
+            <span class="n">reference_color</span> <span class="o">=</span> <span class="n">convert_color</span><span class="p">(</span>
+                <span class="n">sRGBColor</span><span class="p">(</span><span class="n">rgb_r</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">rgb_g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">rgb_b</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">LabColor</span>
+            <span class="p">)</span>
+
+    <span class="n">ref_distances</span> <span class="o">=</span> <span class="p">[</span><span class="n">distance_metric</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">reference_color</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">lab_colors</span><span class="p">]</span>
+    <span class="n">sorted_index</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ref_distances</span><span class="p">)),</span> <span class="n">key</span><span class="o">=</span><span class="n">ref_distances</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;colors&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">lab_colors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sorted_index</span><span class="p">],</span>
+        <span class="s2">&quot;indices&quot;</span><span class="p">:</span> <span class="n">sorted_index</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="colorteller.utils.benchmark.PerceptualDistanceBenchmark.metric" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">metric</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+<a href="#colorteller.utils.benchmark.PerceptualDistanceBenchmark.metric" class="headerlink" title="Permanent link">¤</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>calculate the metrics of the current benchmark</p>
+
+        <details class="quote">
+          <summary>Source code in <code>colorteller/utils/benchmark.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">metric</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;calculate the metrics of the current benchmark&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;perceptual_distance&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_perceptual_distance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LabColor</span><span class="p">),</span>
+    <span class="p">}</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Introduction
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../chart/" class="md-footer__link md-footer__link--next" aria-label="Next: utils.chart" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              utils.chart
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://colorteller.kausalflow.com" target="_blank" rel="noopener" title="colorteller.kausalflow.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M204.3 5C104.9 24.4 24.8 104.3 5.2 203.4c-37 187 131.7 326.4 258.8 306.7 41.2-6.4 61.4-54.6 42.5-91.7-23.1-45.4 9.9-98.4 60.9-98.4h79.7c35.8 0 64.8-29.6 64.9-65.3C511.5 97.1 368.1-26.9 204.3 5zM96 320c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm32-128c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128-64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/kausalflow/colorteller-package" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="http://kausalflow.com" target="_blank" rel="noopener" title="kausalflow.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 96H0c0 123.7 100.3 224 224 224v144c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320C288 196.3 187.7 96 64 96zm384-64c-84.2 0-157.4 46.5-195.7 115.2 27.7 30.2 48.2 66.9 59 107.6C424 243.1 512 147.9 512 32h-64z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.sections", "navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>
